@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+   <!-- daterange picker -->
+   <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
+
+<!-- dropzonejs -->
+<link rel="stylesheet" href="{% static 'plugins/dropzone/min/dropzone.min.css' %}">
+
+ 
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+  
+  
+   
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="#" class="h1"><b>Fitness First</b> Gym</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Register User</p>
+
+      <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="FullName" placeholder="Full name" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" name="Email" placeholder="Email" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+         <!-- radio -->
+         <div class="form-group clearfix mb-3">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="radioPrimary2" value="Female" name="Gender">
+              <label for="radioPrimary2"> Female </label>
+            </div>
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="radioPrimary3" value="Male" name="Gender" checked>
+              <label for="radioPrimary3"> Male </label>
+            </div>
+          </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="Phone" placeholder="Phone" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-phone"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="Address" placeholder="Address" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-home"></span>
+            </div>
+          </div>
+        </div>
+
+       
+        <div class="custom-file mb-3">
+          <input type="file" id="imageInput" accept=".jpg, .jpeg, .png" name="ProfilePic" onchange="validateImage()" required>
+          <p id="errorMessage"  style="color: red;"></p>
+          <label class="custom-file-label" id="inputlble" for="imageInput">Choose pic...</label>
+        </div>
+          <!-- Date -->
+          <div class="form-group">
+              <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                  <input type="text" class="form-control datetimepicker-input" name="DateOfBirth" placeholder="Date of Birth" data-target="#reservationdate" required/>
+                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+              </div>
+          </div>
+        
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="FitnessGoals" placeholder="Fitness Goals" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-crosshairs"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Retype password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+              <label for="agreeTerms">
+               I agree to the <a href="#">terms</a>
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+     
+
+      <a href="#" class="text-center">I already have a membership</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- InputMask -->
+<script src="{% static 'plugins/moment/moment.min.js' %}"></script>
+<script src="{% static 'plugins/inputmask/jquery.inputmask.min.js' %}"></script>
+<!-- date-range-picker -->
+<script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
+<!-- bootstrap color picker -->
+<script src="{% static 'plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{% static 'plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+</body>
+</html>
+
+<script>
+    $(function() {
+        //Date picker
+    $('#reservationdate').datetimepicker({
+      format: 'YYYY-MM-DD'
+    });
+    })
+    
+
+</script>
+ <script>
+        function validateImage() {
+            var input = document.getElementById('imageInput');
+            var errorMessage = document.getElementById('errorMessage');
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
+            if (!allowedExtensions.exec(input.value)) {
+                errorMessage.textContent = 'Invalid file type. Please select a .jpg, .jpeg, or .png file.';
+                input.value = '';
+                return false;
+            } else {
+                errorMessage.textContent = '';
+            }
+        }
+    </script>
